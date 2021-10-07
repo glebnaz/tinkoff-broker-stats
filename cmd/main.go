@@ -2,8 +2,9 @@ package main
 
 import (
 	"context"
-	"google.golang.org/grpc"
 	"os"
+
+	"google.golang.org/grpc"
 
 	grpcInternal "github.com/glebnaz/go-platform/grpc"
 	log "github.com/sirupsen/logrus"

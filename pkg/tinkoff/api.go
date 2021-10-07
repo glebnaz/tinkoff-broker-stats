@@ -2,7 +2,12 @@
 
 package tinkoff
 
+import (
+	"context"
+)
+
 // API interface for tinkoff client
 type API interface {
-	GetPortfolio() (int32, error)
+	GetPortfolio(ctx context.Context, accountID string) (Portfolio, error)
+	GetAccounts(ctx context.Context) ([]Account, error)
 }

@@ -14,156 +14,84 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// PetStoreClient is the client API for PetStore service.
+// TinkoffServiceClient is the client API for TinkoffService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type PetStoreClient interface {
-	GetPet(ctx context.Context, in *GetPetRequest, opts ...grpc.CallOption) (*GetPetResponse, error)
-	PutPet(ctx context.Context, in *PutPetRequest, opts ...grpc.CallOption) (*PutPetResponse, error)
-	DeletePet(ctx context.Context, in *DeletePetRequest, opts ...grpc.CallOption) (*DeletePetResponse, error)
+type TinkoffServiceClient interface {
+	GetAccounts(ctx context.Context, in *GetAccountsRequest, opts ...grpc.CallOption) (*GetAccountsResponse, error)
 }
 
-type petStoreClient struct {
+type tinkoffServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewPetStoreClient(cc grpc.ClientConnInterface) PetStoreClient {
-	return &petStoreClient{cc}
+func NewTinkoffServiceClient(cc grpc.ClientConnInterface) TinkoffServiceClient {
+	return &tinkoffServiceClient{cc}
 }
 
-func (c *petStoreClient) GetPet(ctx context.Context, in *GetPetRequest, opts ...grpc.CallOption) (*GetPetResponse, error) {
-	out := new(GetPetResponse)
-	err := c.cc.Invoke(ctx, "/pet.v1.PetStore/GetPet", in, out, opts...)
+func (c *tinkoffServiceClient) GetAccounts(ctx context.Context, in *GetAccountsRequest, opts ...grpc.CallOption) (*GetAccountsResponse, error) {
+	out := new(GetAccountsResponse)
+	err := c.cc.Invoke(ctx, "/tinkoff.v1.TinkoffService/GetAccounts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *petStoreClient) PutPet(ctx context.Context, in *PutPetRequest, opts ...grpc.CallOption) (*PutPetResponse, error) {
-	out := new(PutPetResponse)
-	err := c.cc.Invoke(ctx, "/pet.v1.PetStore/PutPet", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *petStoreClient) DeletePet(ctx context.Context, in *DeletePetRequest, opts ...grpc.CallOption) (*DeletePetResponse, error) {
-	out := new(DeletePetResponse)
-	err := c.cc.Invoke(ctx, "/pet.v1.PetStore/DeletePet", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// PetStoreServer is the server API for PetStore service.
-// All implementations should embed UnimplementedPetStoreServer
+// TinkoffServiceServer is the server API for TinkoffService service.
+// All implementations should embed UnimplementedTinkoffServiceServer
 // for forward compatibility
-type PetStoreServer interface {
-	GetPet(context.Context, *GetPetRequest) (*GetPetResponse, error)
-	PutPet(context.Context, *PutPetRequest) (*PutPetResponse, error)
-	DeletePet(context.Context, *DeletePetRequest) (*DeletePetResponse, error)
+type TinkoffServiceServer interface {
+	GetAccounts(context.Context, *GetAccountsRequest) (*GetAccountsResponse, error)
 }
 
-// UnimplementedPetStoreServer should be embedded to have forward compatible implementations.
-type UnimplementedPetStoreServer struct {
+// UnimplementedTinkoffServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedTinkoffServiceServer struct {
 }
 
-func (UnimplementedPetStoreServer) GetPet(context.Context, *GetPetRequest) (*GetPetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPet not implemented")
-}
-func (UnimplementedPetStoreServer) PutPet(context.Context, *PutPetRequest) (*PutPetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PutPet not implemented")
-}
-func (UnimplementedPetStoreServer) DeletePet(context.Context, *DeletePetRequest) (*DeletePetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePet not implemented")
+func (UnimplementedTinkoffServiceServer) GetAccounts(context.Context, *GetAccountsRequest) (*GetAccountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAccounts not implemented")
 }
 
-// UnsafePetStoreServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PetStoreServer will
+// UnsafeTinkoffServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TinkoffServiceServer will
 // result in compilation errors.
-type UnsafePetStoreServer interface {
-	mustEmbedUnimplementedPetStoreServer()
+type UnsafeTinkoffServiceServer interface {
+	mustEmbedUnimplementedTinkoffServiceServer()
 }
 
-func RegisterPetStoreServer(s grpc.ServiceRegistrar, srv PetStoreServer) {
-	s.RegisterService(&PetStore_ServiceDesc, srv)
+func RegisterTinkoffServiceServer(s grpc.ServiceRegistrar, srv TinkoffServiceServer) {
+	s.RegisterService(&TinkoffService_ServiceDesc, srv)
 }
 
-func _PetStore_GetPet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPetRequest)
+func _TinkoffService_GetAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAccountsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PetStoreServer).GetPet(ctx, in)
+		return srv.(TinkoffServiceServer).GetAccounts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pet.v1.PetStore/GetPet",
+		FullMethod: "/tinkoff.v1.TinkoffService/GetAccounts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PetStoreServer).GetPet(ctx, req.(*GetPetRequest))
+		return srv.(TinkoffServiceServer).GetAccounts(ctx, req.(*GetAccountsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PetStore_PutPet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PutPetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PetStoreServer).PutPet(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pet.v1.PetStore/PutPet",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PetStoreServer).PutPet(ctx, req.(*PutPetRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PetStore_DeletePet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PetStoreServer).DeletePet(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pet.v1.PetStore/DeletePet",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PetStoreServer).DeletePet(ctx, req.(*DeletePetRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// PetStore_ServiceDesc is the grpc.ServiceDesc for PetStore service.
+// TinkoffService_ServiceDesc is the grpc.ServiceDesc for TinkoffService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var PetStore_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pet.v1.PetStore",
-	HandlerType: (*PetStoreServer)(nil),
+var TinkoffService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "tinkoff.v1.TinkoffService",
+	HandlerType: (*TinkoffServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetPet",
-			Handler:    _PetStore_GetPet_Handler,
-		},
-		{
-			MethodName: "PutPet",
-			Handler:    _PetStore_PutPet_Handler,
-		},
-		{
-			MethodName: "DeletePet",
-			Handler:    _PetStore_DeletePet_Handler,
+			MethodName: "GetAccounts",
+			Handler:    _TinkoffService_GetAccounts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

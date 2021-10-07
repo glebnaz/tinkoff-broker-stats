@@ -23,75 +23,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// PetType represents the different types of pets in the pet store.
-type PetType int32
-
-const (
-	PetType_PET_TYPE_UNSPECIFIED PetType = 0
-	PetType_PET_TYPE_CAT         PetType = 1
-	PetType_PET_TYPE_DOG         PetType = 2
-	PetType_PET_TYPE_SNAKE       PetType = 3
-	PetType_PET_TYPE_HAMSTER     PetType = 4
-)
-
-// Enum value maps for PetType.
-var (
-	PetType_name = map[int32]string{
-		0: "PET_TYPE_UNSPECIFIED",
-		1: "PET_TYPE_CAT",
-		2: "PET_TYPE_DOG",
-		3: "PET_TYPE_SNAKE",
-		4: "PET_TYPE_HAMSTER",
-	}
-	PetType_value = map[string]int32{
-		"PET_TYPE_UNSPECIFIED": 0,
-		"PET_TYPE_CAT":         1,
-		"PET_TYPE_DOG":         2,
-		"PET_TYPE_SNAKE":       3,
-		"PET_TYPE_HAMSTER":     4,
-	}
-)
-
-func (x PetType) Enum() *PetType {
-	p := new(PetType)
-	*p = x
-	return p
-}
-
-func (x PetType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (PetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_v1_api_proto_enumTypes[0].Descriptor()
-}
-
-func (PetType) Type() protoreflect.EnumType {
-	return &file_api_v1_api_proto_enumTypes[0]
-}
-
-func (x PetType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use PetType.Descriptor instead.
-func (PetType) EnumDescriptor() ([]byte, []int) {
-	return file_api_v1_api_proto_rawDescGZIP(), []int{0}
-}
-
-// Pet represents a pet in the pet store.
-type Pet struct {
+type GetAccountsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PetType PetType `protobuf:"varint,1,opt,name=pet_type,json=petType,proto3,enum=pet.v1.PetType" json:"pet_type,omitempty"`
-	PetId   string  `protobuf:"bytes,2,opt,name=pet_id,json=petId,proto3" json:"pet_id,omitempty"`
-	Name    string  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	List []*GetAccountsResponse_Account `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
 }
 
-func (x *Pet) Reset() {
-	*x = Pet{}
+func (x *GetAccountsResponse) Reset() {
+	*x = GetAccountsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_api_v1_api_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -99,13 +40,13 @@ func (x *Pet) Reset() {
 	}
 }
 
-func (x *Pet) String() string {
+func (x *GetAccountsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Pet) ProtoMessage() {}
+func (*GetAccountsResponse) ProtoMessage() {}
 
-func (x *Pet) ProtoReflect() protoreflect.Message {
+func (x *GetAccountsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_api_v1_api_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -117,42 +58,26 @@ func (x *Pet) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Pet.ProtoReflect.Descriptor instead.
-func (*Pet) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetAccountsResponse.ProtoReflect.Descriptor instead.
+func (*GetAccountsResponse) Descriptor() ([]byte, []int) {
 	return file_api_v1_api_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Pet) GetPetType() PetType {
+func (x *GetAccountsResponse) GetList() []*GetAccountsResponse_Account {
 	if x != nil {
-		return x.PetType
+		return x.List
 	}
-	return PetType_PET_TYPE_UNSPECIFIED
+	return nil
 }
 
-func (x *Pet) GetPetId() string {
-	if x != nil {
-		return x.PetId
-	}
-	return ""
-}
-
-func (x *Pet) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetPetRequest struct {
+type GetAccountsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	PetId string `protobuf:"bytes,1,opt,name=pet_id,json=petId,proto3" json:"pet_id,omitempty"`
 }
 
-func (x *GetPetRequest) Reset() {
-	*x = GetPetRequest{}
+func (x *GetAccountsRequest) Reset() {
+	*x = GetAccountsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_api_v1_api_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -160,13 +85,13 @@ func (x *GetPetRequest) Reset() {
 	}
 }
 
-func (x *GetPetRequest) String() string {
+func (x *GetAccountsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetPetRequest) ProtoMessage() {}
+func (*GetAccountsRequest) ProtoMessage() {}
 
-func (x *GetPetRequest) ProtoReflect() protoreflect.Message {
+func (x *GetAccountsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_api_v1_api_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -178,28 +103,22 @@ func (x *GetPetRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetPetRequest.ProtoReflect.Descriptor instead.
-func (*GetPetRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetAccountsRequest.ProtoReflect.Descriptor instead.
+func (*GetAccountsRequest) Descriptor() ([]byte, []int) {
 	return file_api_v1_api_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetPetRequest) GetPetId() string {
-	if x != nil {
-		return x.PetId
-	}
-	return ""
-}
-
-type GetPetResponse struct {
+type GetAccountsResponse_Account struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Pet *Pet `protobuf:"bytes,1,opt,name=pet,proto3" json:"pet,omitempty"`
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Id   string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *GetPetResponse) Reset() {
-	*x = GetPetResponse{}
+func (x *GetAccountsResponse_Account) Reset() {
+	*x = GetAccountsResponse_Account{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_api_v1_api_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -207,13 +126,13 @@ func (x *GetPetResponse) Reset() {
 	}
 }
 
-func (x *GetPetResponse) String() string {
+func (x *GetAccountsResponse_Account) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetPetResponse) ProtoMessage() {}
+func (*GetAccountsResponse_Account) ProtoMessage() {}
 
-func (x *GetPetResponse) ProtoReflect() protoreflect.Message {
+func (x *GetAccountsResponse_Account) ProtoReflect() protoreflect.Message {
 	mi := &file_api_v1_api_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -225,269 +144,50 @@ func (x *GetPetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetPetResponse.ProtoReflect.Descriptor instead.
-func (*GetPetResponse) Descriptor() ([]byte, []int) {
-	return file_api_v1_api_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use GetAccountsResponse_Account.ProtoReflect.Descriptor instead.
+func (*GetAccountsResponse_Account) Descriptor() ([]byte, []int) {
+	return file_api_v1_api_proto_rawDescGZIP(), []int{0, 0}
 }
 
-func (x *GetPetResponse) GetPet() *Pet {
+func (x *GetAccountsResponse_Account) GetType() string {
 	if x != nil {
-		return x.Pet
+		return x.Type
 	}
-	return nil
+	return ""
 }
 
-type PutPetRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	PetType PetType `protobuf:"varint,1,opt,name=pet_type,json=petType,proto3,enum=pet.v1.PetType" json:"pet_type,omitempty"`
-	Id      string  `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
-	Name    string  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-}
-
-func (x *PutPetRequest) Reset() {
-	*x = PutPetRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_v1_api_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PutPetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PutPetRequest) ProtoMessage() {}
-
-func (x *PutPetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_api_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PutPetRequest.ProtoReflect.Descriptor instead.
-func (*PutPetRequest) Descriptor() ([]byte, []int) {
-	return file_api_v1_api_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *PutPetRequest) GetPetType() PetType {
-	if x != nil {
-		return x.PetType
-	}
-	return PetType_PET_TYPE_UNSPECIFIED
-}
-
-func (x *PutPetRequest) GetId() string {
+func (x *GetAccountsResponse_Account) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *PutPetRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type PutPetResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Pet *Pet `protobuf:"bytes,1,opt,name=pet,proto3" json:"pet,omitempty"`
-}
-
-func (x *PutPetResponse) Reset() {
-	*x = PutPetResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_v1_api_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PutPetResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PutPetResponse) ProtoMessage() {}
-
-func (x *PutPetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_api_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PutPetResponse.ProtoReflect.Descriptor instead.
-func (*PutPetResponse) Descriptor() ([]byte, []int) {
-	return file_api_v1_api_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *PutPetResponse) GetPet() *Pet {
-	if x != nil {
-		return x.Pet
-	}
-	return nil
-}
-
-type DeletePetRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	PetID string `protobuf:"bytes,1,opt,name=petID,proto3" json:"petID,omitempty"`
-}
-
-func (x *DeletePetRequest) Reset() {
-	*x = DeletePetRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_v1_api_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeletePetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePetRequest) ProtoMessage() {}
-
-func (x *DeletePetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_api_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePetRequest.ProtoReflect.Descriptor instead.
-func (*DeletePetRequest) Descriptor() ([]byte, []int) {
-	return file_api_v1_api_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *DeletePetRequest) GetPetID() string {
-	if x != nil {
-		return x.PetID
-	}
-	return ""
-}
-
-type DeletePetResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *DeletePetResponse) Reset() {
-	*x = DeletePetResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_v1_api_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DeletePetResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePetResponse) ProtoMessage() {}
-
-func (x *DeletePetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_api_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePetResponse.ProtoReflect.Descriptor instead.
-func (*DeletePetResponse) Descriptor() ([]byte, []int) {
-	return file_api_v1_api_proto_rawDescGZIP(), []int{6}
-}
-
 var File_api_v1_api_proto protoreflect.FileDescriptor
 
 var file_api_v1_api_proto_rawDesc = []byte{
 	0x0a, 0x10, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x12, 0x06, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67,
-	0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x5c, 0x0a, 0x03, 0x50, 0x65, 0x74, 0x12,
-	0x2a, 0x0a, 0x08, 0x70, 0x65, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0e, 0x32, 0x0f, 0x2e, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x65, 0x74, 0x54, 0x79,
-	0x70, 0x65, 0x52, 0x07, 0x70, 0x65, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x15, 0x0a, 0x06, 0x70,
-	0x65, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x70, 0x65, 0x74,
-	0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x26, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x50, 0x65, 0x74,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x70, 0x65, 0x74, 0x5f, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x70, 0x65, 0x74, 0x49, 0x64, 0x22, 0x2f,
-	0x0a, 0x0e, 0x47, 0x65, 0x74, 0x50, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x1d, 0x0a, 0x03, 0x70, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e,
-	0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x65, 0x74, 0x52, 0x03, 0x70, 0x65, 0x74, 0x22,
-	0x5f, 0x0a, 0x0d, 0x50, 0x75, 0x74, 0x50, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x2a, 0x0a, 0x08, 0x70, 0x65, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0e, 0x32, 0x0f, 0x2e, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x65, 0x74, 0x54,
-	0x79, 0x70, 0x65, 0x52, 0x07, 0x70, 0x65, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04,
-	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x22, 0x2f, 0x0a, 0x0e, 0x50, 0x75, 0x74, 0x50, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x1d, 0x0a, 0x03, 0x70, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x0b, 0x2e, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x65, 0x74, 0x52, 0x03, 0x70, 0x65,
-	0x74, 0x22, 0x28, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x65, 0x74, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x65, 0x74, 0x49, 0x44, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x70, 0x65, 0x74, 0x49, 0x44, 0x22, 0x13, 0x0a, 0x11, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x2a, 0x71, 0x0a, 0x07, 0x50, 0x65, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x14, 0x50,
-	0x45, 0x54, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46,
-	0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x10, 0x0a, 0x0c, 0x50, 0x45, 0x54, 0x5f, 0x54, 0x59, 0x50,
-	0x45, 0x5f, 0x43, 0x41, 0x54, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x50, 0x45, 0x54, 0x5f, 0x54,
-	0x59, 0x50, 0x45, 0x5f, 0x44, 0x4f, 0x47, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x50, 0x45, 0x54,
-	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x53, 0x4e, 0x41, 0x4b, 0x45, 0x10, 0x03, 0x12, 0x14, 0x0a,
-	0x10, 0x50, 0x45, 0x54, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x48, 0x41, 0x4d, 0x53, 0x54, 0x45,
-	0x52, 0x10, 0x04, 0x32, 0xfa, 0x01, 0x0a, 0x08, 0x50, 0x65, 0x74, 0x53, 0x74, 0x6f, 0x72, 0x65,
-	0x12, 0x49, 0x0a, 0x06, 0x47, 0x65, 0x74, 0x50, 0x65, 0x74, 0x12, 0x15, 0x2e, 0x70, 0x65, 0x74,
-	0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x16, 0x2e, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x65,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x10, 0x82, 0xd3, 0xe4, 0x93, 0x02,
-	0x0a, 0x12, 0x08, 0x2f, 0x70, 0x65, 0x74, 0x2f, 0x67, 0x65, 0x74, 0x12, 0x4c, 0x0a, 0x06, 0x50,
-	0x75, 0x74, 0x50, 0x65, 0x74, 0x12, 0x15, 0x2e, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50,
-	0x75, 0x74, 0x50, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x70,
-	0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x75, 0x74, 0x50, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x13, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x0d, 0x22, 0x08, 0x2f, 0x70,
-	0x65, 0x74, 0x2f, 0x70, 0x75, 0x74, 0x3a, 0x01, 0x2a, 0x12, 0x55, 0x0a, 0x09, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x50, 0x65, 0x74, 0x12, 0x18, 0x2e, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x19, 0x2e, 0x70, 0x65, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x50, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x13, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x0d, 0x2a, 0x0b, 0x2f, 0x70, 0x65, 0x74, 0x2f, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x42, 0x07, 0x5a, 0x05, 0x70, 0x62, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x74, 0x6f, 0x12, 0x0a, 0x74, 0x69, 0x6e, 0x6b, 0x6f, 0x66, 0x66, 0x2e, 0x76, 0x31, 0x1a, 0x1c,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x81, 0x01, 0x0a,
+	0x13, 0x47, 0x65, 0x74, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x27, 0x2e, 0x74, 0x69, 0x6e, 0x6b, 0x6f, 0x66, 0x66, 0x2e, 0x76, 0x31, 0x2e,
+	0x47, 0x65, 0x74, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x2e, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x04, 0x6c, 0x69, 0x73,
+	0x74, 0x1a, 0x2d, 0x0a, 0x07, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x12, 0x0a, 0x04,
+	0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
+	0x22, 0x14, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x32, 0x77, 0x0a, 0x0e, 0x54, 0x69, 0x6e, 0x6b, 0x6f, 0x66,
+	0x66, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x65, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x41,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x12, 0x1e, 0x2e, 0x74, 0x69, 0x6e, 0x6b, 0x6f, 0x66,
+	0x66, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x74, 0x69, 0x6e, 0x6b, 0x6f, 0x66,
+	0x66, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x15, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x0f,
+	0x12, 0x0d, 0x2f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2f, 0x6c, 0x69, 0x73, 0x74, 0x42,
+	0x07, 0x5a, 0x05, 0x70, 0x62, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -502,34 +202,21 @@ func file_api_v1_api_proto_rawDescGZIP() []byte {
 	return file_api_v1_api_proto_rawDescData
 }
 
-var file_api_v1_api_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_v1_api_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_api_v1_api_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_api_v1_api_proto_goTypes = []interface{}{
-	(PetType)(0),              // 0: pet.v1.PetType
-	(*Pet)(nil),               // 1: pet.v1.Pet
-	(*GetPetRequest)(nil),     // 2: pet.v1.GetPetRequest
-	(*GetPetResponse)(nil),    // 3: pet.v1.GetPetResponse
-	(*PutPetRequest)(nil),     // 4: pet.v1.PutPetRequest
-	(*PutPetResponse)(nil),    // 5: pet.v1.PutPetResponse
-	(*DeletePetRequest)(nil),  // 6: pet.v1.DeletePetRequest
-	(*DeletePetResponse)(nil), // 7: pet.v1.DeletePetResponse
+	(*GetAccountsResponse)(nil),         // 0: tinkoff.v1.GetAccountsResponse
+	(*GetAccountsRequest)(nil),          // 1: tinkoff.v1.GetAccountsRequest
+	(*GetAccountsResponse_Account)(nil), // 2: tinkoff.v1.GetAccountsResponse.Account
 }
 var file_api_v1_api_proto_depIdxs = []int32{
-	0, // 0: pet.v1.Pet.pet_type:type_name -> pet.v1.PetType
-	1, // 1: pet.v1.GetPetResponse.pet:type_name -> pet.v1.Pet
-	0, // 2: pet.v1.PutPetRequest.pet_type:type_name -> pet.v1.PetType
-	1, // 3: pet.v1.PutPetResponse.pet:type_name -> pet.v1.Pet
-	2, // 4: pet.v1.PetStore.GetPet:input_type -> pet.v1.GetPetRequest
-	4, // 5: pet.v1.PetStore.PutPet:input_type -> pet.v1.PutPetRequest
-	6, // 6: pet.v1.PetStore.DeletePet:input_type -> pet.v1.DeletePetRequest
-	3, // 7: pet.v1.PetStore.GetPet:output_type -> pet.v1.GetPetResponse
-	5, // 8: pet.v1.PetStore.PutPet:output_type -> pet.v1.PutPetResponse
-	7, // 9: pet.v1.PetStore.DeletePet:output_type -> pet.v1.DeletePetResponse
-	7, // [7:10] is the sub-list for method output_type
-	4, // [4:7] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	2, // 0: tinkoff.v1.GetAccountsResponse.list:type_name -> tinkoff.v1.GetAccountsResponse.Account
+	1, // 1: tinkoff.v1.TinkoffService.GetAccounts:input_type -> tinkoff.v1.GetAccountsRequest
+	0, // 2: tinkoff.v1.TinkoffService.GetAccounts:output_type -> tinkoff.v1.GetAccountsResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_api_proto_init() }
@@ -539,7 +226,7 @@ func file_api_v1_api_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_api_v1_api_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Pet); i {
+			switch v := v.(*GetAccountsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -551,7 +238,7 @@ func file_api_v1_api_proto_init() {
 			}
 		}
 		file_api_v1_api_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPetRequest); i {
+			switch v := v.(*GetAccountsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -563,55 +250,7 @@ func file_api_v1_api_proto_init() {
 			}
 		}
 		file_api_v1_api_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetPetResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_v1_api_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PutPetRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_v1_api_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PutPetResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_v1_api_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeletePetRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_v1_api_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeletePetResponse); i {
+			switch v := v.(*GetAccountsResponse_Account); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -628,14 +267,13 @@ func file_api_v1_api_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_api_v1_api_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   7,
+			NumEnums:      0,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_api_v1_api_proto_goTypes,
 		DependencyIndexes: file_api_v1_api_proto_depIdxs,
-		EnumInfos:         file_api_v1_api_proto_enumTypes,
 		MessageInfos:      file_api_v1_api_proto_msgTypes,
 	}.Build()
 	File_api_v1_api_proto = out.File

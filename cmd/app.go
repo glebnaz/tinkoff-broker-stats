@@ -5,6 +5,8 @@ import (
 	"net"
 	"net/http"
 
+	"github.com/glebnaz/tinkoff-broker-stats/pkg/tinkoff"
+
 	"github.com/glebnaz/tinkoff-broker-stats/internal/pkg/bindata"
 
 	"github.com/glebnaz/go-platform/metrics"
@@ -72,6 +74,9 @@ func (a app) Start(ctx context.Context) error {
 }
 
 type cfgApp struct {
+	APIToken string `json:"api_token" envconfig:"API_TOKEN" required:"true"`
+
+	//debugCFG
 	DebugPort string `json:"debug_port" envconfig:"DEBUG_PORT" default:":8084"`
 	PortHTTP  string `json:"port_http" envconfig:"PORT_HTTP" default:":8080"`
 	PortGRPC  string `json:"port_grpc" envconfig:"PORT_GRPC" default:":8082"`
@@ -85,7 +90,7 @@ func newApp(ctx context.Context, grpcOPTS ...grpc.ServerOption) app {
 		log.Fatalf("cfg app is bad: %s", err)
 	}
 
-	srv := services.NewService()
+	srv := services.NewService(tinkoff.NewClient(cfg.APIToken))
 
 	//debug port
 	serverDBG := debugServer()
@@ -103,10 +108,11 @@ func newApp(ctx context.Context, grpcOPTS ...grpc.ServerOption) app {
 	}
 }
 
+//nolint: interfacer
 func grpcServer(srv *services.Service, grpcOPTS []grpc.ServerOption) *grpc.Server {
 	//grpc server
 	grpcServer := grpc.NewServer(grpcOPTS...)
-	pb.RegisterPetStoreServer(grpcServer, srv)
+	pb.RegisterTinkoffServiceServer(grpcServer, srv)
 
 	return grpcServer
 }
@@ -125,7 +131,7 @@ func httpServer(ctx context.Context, endpoint string) *runtime.ServeMux {
 	var jsonPb runtime.JSONPb
 	jsonPb.UseProtoNames = true
 	mux := runtime.NewServeMux(runtime.WithMarshalerOption(runtime.MIMEWildcard, &jsonPb))
-	mustInit(pb.RegisterPetStoreHandlerFromEndpoint(ctx, mux, endpoint, []grpc.DialOption{grpc.WithInsecure()}))
+	mustInit(pb.RegisterTinkoffServiceHandlerFromEndpoint(ctx, mux, endpoint, []grpc.DialOption{grpc.WithInsecure()}))
 	return mux
 }
 

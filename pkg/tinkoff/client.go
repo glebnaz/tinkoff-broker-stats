@@ -4,6 +4,7 @@ package tinkoff
 
 import (
 	"context"
+
 	sdk "github.com/TinkoffCreditSystems/invest-openapi-go-sdk"
 )
 
@@ -13,7 +14,7 @@ type Client struct {
 	cli *sdk.RestClient
 }
 
-func NewClient(token string) *Client {
+func NewClient(token string) API {
 	return &Client{
 		cli: sdk.NewRestClient(token),
 	}

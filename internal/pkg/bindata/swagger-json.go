@@ -56,139 +56,43 @@ var _apiApiSwaggerJson = []byte(`{
     "application/json"
   ],
   "paths": {
-    "/pet/delete": {
-      "delete": {
-        "operationId": "PetStore_DeletePet",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1DeletePetResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "petID",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "PetStore"
-        ]
-      }
-    },
-    "/pet/get": {
+    "/account/list": {
       "get": {
-        "operationId": "PetStore_GetPet",
+        "operationId": "TinkoffService_GetAccounts",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetPetResponse"
+              "$ref": "#/definitions/v1GetAccountsResponse"
             }
           }
         },
-        "parameters": [
-          {
-            "name": "pet_id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
-          "PetStore"
-        ]
-      }
-    },
-    "/pet/put": {
-      "post": {
-        "operationId": "PetStore_PutPet",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1PutPetResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1PutPetRequest"
-            }
-          }
-        ],
-        "tags": [
-          "PetStore"
+          "TinkoffService"
         ]
       }
     }
   },
   "definitions": {
-    "v1DeletePetResponse": {
-      "type": "object"
-    },
-    "v1GetPetResponse": {
+    "GetAccountsResponseAccount": {
       "type": "object",
       "properties": {
-        "pet": {
-          "$ref": "#/definitions/v1Pet"
-        }
-      }
-    },
-    "v1Pet": {
-      "type": "object",
-      "properties": {
-        "pet_type": {
-          "$ref": "#/definitions/v1PetType"
-        },
-        "pet_id": {
+        "type": {
           "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "description": "Pet represents a pet in the pet store."
-    },
-    "v1PetType": {
-      "type": "string",
-      "enum": [
-        "PET_TYPE_UNSPECIFIED",
-        "PET_TYPE_CAT",
-        "PET_TYPE_DOG",
-        "PET_TYPE_SNAKE",
-        "PET_TYPE_HAMSTER"
-      ],
-      "default": "PET_TYPE_UNSPECIFIED",
-      "description": "PetType represents the different types of pets in the pet store."
-    },
-    "v1PutPetRequest": {
-      "type": "object",
-      "properties": {
-        "pet_type": {
-          "$ref": "#/definitions/v1PetType"
         },
         "id": {
           "type": "string"
-        },
-        "name": {
-          "type": "string"
         }
       }
     },
-    "v1PutPetResponse": {
+    "v1GetAccountsResponse": {
       "type": "object",
       "properties": {
-        "pet": {
-          "$ref": "#/definitions/v1Pet"
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetAccountsResponseAccount"
+          }
         }
       }
     }

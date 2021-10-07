@@ -31,130 +31,42 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-var (
-	filter_PetStore_GetPet_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_PetStore_GetPet_0(ctx context.Context, marshaler runtime.Marshaler, client PetStoreClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPetRequest
+func request_TinkoffService_GetAccounts_0(ctx context.Context, marshaler runtime.Marshaler, client TinkoffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAccountsRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PetStore_GetPet_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.GetPet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetAccounts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_PetStore_GetPet_0(ctx context.Context, marshaler runtime.Marshaler, server PetStoreServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetPetRequest
+func local_request_TinkoffService_GetAccounts_0(ctx context.Context, marshaler runtime.Marshaler, server TinkoffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAccountsRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PetStore_GetPet_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.GetPet(ctx, &protoReq)
+	msg, err := server.GetAccounts(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_PetStore_PutPet_0(ctx context.Context, marshaler runtime.Marshaler, client PetStoreClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PutPetRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.PutPet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_PetStore_PutPet_0(ctx context.Context, marshaler runtime.Marshaler, server PetStoreServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PutPetRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.PutPet(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_PetStore_DeletePet_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_PetStore_DeletePet_0(ctx context.Context, marshaler runtime.Marshaler, client PetStoreClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeletePetRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PetStore_DeletePet_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.DeletePet(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_PetStore_DeletePet_0(ctx context.Context, marshaler runtime.Marshaler, server PetStoreServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeletePetRequest
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PetStore_DeletePet_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.DeletePet(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-// RegisterPetStoreHandlerServer registers the http handlers for service PetStore to "mux".
-// UnaryRPC     :call PetStoreServer directly.
+// RegisterTinkoffServiceHandlerServer registers the http handlers for service TinkoffService to "mux".
+// UnaryRPC     :call TinkoffServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPetStoreHandlerFromEndpoint instead.
-func RegisterPetStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, server PetStoreServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTinkoffServiceHandlerFromEndpoint instead.
+func RegisterTinkoffServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TinkoffServiceServer) error {
 
-	mux.Handle("GET", pattern_PetStore_GetPet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TinkoffService_GetAccounts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pet.v1.PetStore/GetPet", runtime.WithHTTPPathPattern("/pet/get"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tinkoff.v1.TinkoffService/GetAccounts", runtime.WithHTTPPathPattern("/account/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PetStore_GetPet_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TinkoffService_GetAccounts_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -162,62 +74,16 @@ func RegisterPetStoreHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			return
 		}
 
-		forward_PetStore_GetPet_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_PetStore_PutPet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pet.v1.PetStore/PutPet", runtime.WithHTTPPathPattern("/pet/put"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PetStore_PutPet_0(rctx, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_PetStore_PutPet_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("DELETE", pattern_PetStore_DeletePet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/pet.v1.PetStore/DeletePet", runtime.WithHTTPPathPattern("/pet/delete"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PetStore_DeletePet_0(rctx, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_PetStore_DeletePet_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TinkoffService_GetAccounts_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterPetStoreHandlerFromEndpoint is same as RegisterPetStoreHandler but
+// RegisterTinkoffServiceHandlerFromEndpoint is same as RegisterTinkoffServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterPetStoreHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterTinkoffServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -237,79 +103,39 @@ func RegisterPetStoreHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 		}()
 	}()
 
-	return RegisterPetStoreHandler(ctx, mux, conn)
+	return RegisterTinkoffServiceHandler(ctx, mux, conn)
 }
 
-// RegisterPetStoreHandler registers the http handlers for service PetStore to "mux".
+// RegisterTinkoffServiceHandler registers the http handlers for service TinkoffService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterPetStoreHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterPetStoreHandlerClient(ctx, mux, NewPetStoreClient(conn))
+func RegisterTinkoffServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterTinkoffServiceHandlerClient(ctx, mux, NewTinkoffServiceClient(conn))
 }
 
-// RegisterPetStoreHandlerClient registers the http handlers for service PetStore
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "PetStoreClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "PetStoreClient"
+// RegisterTinkoffServiceHandlerClient registers the http handlers for service TinkoffService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "TinkoffServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "TinkoffServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "PetStoreClient" to call the correct interceptors.
-func RegisterPetStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, client PetStoreClient) error {
+// "TinkoffServiceClient" to call the correct interceptors.
+func RegisterTinkoffServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TinkoffServiceClient) error {
 
-	mux.Handle("GET", pattern_PetStore_GetPet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TinkoffService_GetAccounts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/pet.v1.PetStore/GetPet", runtime.WithHTTPPathPattern("/pet/get"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tinkoff.v1.TinkoffService/GetAccounts", runtime.WithHTTPPathPattern("/account/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PetStore_GetPet_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TinkoffService_GetAccounts_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_PetStore_GetPet_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_PetStore_PutPet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/pet.v1.PetStore/PutPet", runtime.WithHTTPPathPattern("/pet/put"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PetStore_PutPet_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_PetStore_PutPet_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("DELETE", pattern_PetStore_DeletePet_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/pet.v1.PetStore/DeletePet", runtime.WithHTTPPathPattern("/pet/delete"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PetStore_DeletePet_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_PetStore_DeletePet_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TinkoffService_GetAccounts_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -317,17 +143,9 @@ func RegisterPetStoreHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_PetStore_GetPet_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"pet", "get"}, ""))
-
-	pattern_PetStore_PutPet_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"pet", "put"}, ""))
-
-	pattern_PetStore_DeletePet_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"pet", "delete"}, ""))
+	pattern_TinkoffService_GetAccounts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"account", "list"}, ""))
 )
 
 var (
-	forward_PetStore_GetPet_0 = runtime.ForwardResponseMessage
-
-	forward_PetStore_PutPet_0 = runtime.ForwardResponseMessage
-
-	forward_PetStore_DeletePet_0 = runtime.ForwardResponseMessage
+	forward_TinkoffService_GetAccounts_0 = runtime.ForwardResponseMessage
 )
